@@ -1,7 +1,6 @@
 table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 10px;
+    border-collapse: collapse;
   }
   
   thead {
@@ -10,7 +9,8 @@ table {
   
   thead th {
     text-align: left;
-    padding-bottom: 10px;
+    padding: 10px;
+    padding-bottom: 20px;
   }
   
   tbody tr {
@@ -18,7 +18,8 @@ table {
   }
   
   tbody td {
-    padding: 10px 0;
+    padding: 10px;
+    padding-bottom: 20px;
   }
   
   tbody tr:last-child {
