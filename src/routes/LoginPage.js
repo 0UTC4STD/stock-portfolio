@@ -77,7 +77,7 @@ const LoginPage = () => {
           />
           {errors && errors.password && <p>Password is required</p>}
 
-          <Link to="/forgot-password">Forgot Password?</Link>
+          <Link to="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
 
           <input className="login-submit" type="submit" value="Login" />
         </form>

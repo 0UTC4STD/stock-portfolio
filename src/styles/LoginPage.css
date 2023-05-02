@@ -61,3 +61,12 @@
   .register-link a {
     color: #999;
   }
+
+  .forgot-password-link {
+    color: lightgrey;
+    font-size: 0.8rem;
+    text-align: right;
+    display: block;
+    margin-top: -5px;
+    margin-bottom: 10px;
+  }
