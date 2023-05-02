@@ -12,9 +12,9 @@
     border: 3px solid lightblue;
     background-color: #fff;
     width: 400px;
-    height: 450px; /* Add this line to make the box taller */
+    height: 450px; 
     display: flex;
-    flex-direction: column; /* Add this line to align the elements vertically */
+    flex-direction: column; 
   }
   
   .register-header {
@@ -33,15 +33,16 @@
   form label {
     display: block;
     margin-bottom: 5px;
+    margin-top: 15px; 
   }
   
   form input {
     display: block;
     width: 100%;
     margin-bottom: 20px;
-    border: none; /* Remove the border */
-    border-bottom: 2px solid #000; /* Add bottom border only */
-    outline: none; /* Remove outline */
+    border: none; 
+    border-bottom: 2px solid #000; 
+    outline: none; 
   }
   
   .register-submit {
