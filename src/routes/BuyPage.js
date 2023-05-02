@@ -48,8 +48,11 @@ const BuyPage = ({ onBuy }) => {
 
   return (
     <div>
-      <h1>Buy</h1>
+      
       <form className="search-form" onSubmit={handleSearch}>
+        <div>
+          <h1>Buy</h1>
+        </div>
         <input
           type="text"
           value={searchTerm}
