@@ -47,7 +47,7 @@ const LoginPage = () => {
       localStorage.setItem('token', response.data.token);
 
       // Reload the page after successful login
-      window.location.reload();
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
@@ -76,6 +76,8 @@ const LoginPage = () => {
             {...register("password", { required: true })}
           />
           {errors && errors.password && <p>Password is required</p>}
+
+          <Link to="/forgot-password">Forgot Password?</Link>
 
           <input className="login-submit" type="submit" value="Login" />
         </form>

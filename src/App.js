@@ -11,6 +11,7 @@ import ResearchPage from './routes/ResearchPage';
 import PortfolioPage from './routes/PortfolioPage';
 import Navbar from './routes/Navbar';
 import Logout from './routes/Logout';
+import ForgotPassword from './routes/ForgotPassword';
 import React, { useState, useEffect } from "react";
 
 const MainLayout = ({ children, handleLogout }) => {
@@ -57,6 +58,7 @@ function App() {
           <Route path="/" element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       )}
     </Router>
