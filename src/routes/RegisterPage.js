@@ -26,7 +26,7 @@ const RegisterPage = () => {
           <h1>Courtemanche Financial</h1>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="username">Username</label>
+          <h2 htmlFor="username">Username</h2>
           <input
             name="username"
             placeholder="Username"
@@ -34,7 +34,7 @@ const RegisterPage = () => {
           />
           {errors.username && <p>Username is required</p>}
 
-          <label htmlFor="password">Password</label>
+          <h2 htmlFor="password">Password</h2>
           <input
             type="password"
             name="password"
