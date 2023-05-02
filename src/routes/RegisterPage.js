@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import '../styles/RegisterPage.css';
 
 const RegisterPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -19,27 +20,35 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          name="username"
-          placeholder="Username"
-          {...register("username", { required: true })}
-        />
-        {errors.username && <p>Username is required</p>}
+    <div className="register-page-container">
+      <div className="register-box">
+        <div className="register-header">
+          <h1>Courtemanche Financial</h1>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="username">Username</label>
+          <input
+            name="username"
+            placeholder="Username"
+            {...register("username", { required: true })}
+          />
+          {errors.username && <p>Username is required</p>}
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          {...register("password", { required: true })}
-        />
-        {errors.password && <p>Password is required</p>}
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            {...register("password", { required: true })}
+          />
+          {errors.password && <p>Password is required</p>}
 
-        <input type="submit" />
-      </form>
-      <p>Already have an account? <Link to="/login">Log in</Link></p>
+          <input className="register-submit" type="submit" value="Register" />
+        </form>
+        <div className="login-link">
+          <p>Already have an account? <Link to="/login">Log in</Link></p>
+        </div>
+      </div>
     </div>
   );
 };

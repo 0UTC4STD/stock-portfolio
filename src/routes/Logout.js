@@ -4,15 +4,16 @@ import { useNavigate } from 'react-router-dom';
 const Logout = ({ handleLogout }) => {
   const navigate = useNavigate();
 
-  const handleLogoutClick = () => {
+  const handleLogoutClick = (e) => {
+    e.preventDefault();
     handleLogout();
     navigate('/login');
   };
 
   return (
-    <button onClick={handleLogoutClick}>
+    <a href="/" onClick={handleLogoutClick}>
       Log Out
-    </button>
+    </a>
   );
 };
 

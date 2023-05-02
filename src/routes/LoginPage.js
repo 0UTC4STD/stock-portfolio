@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -53,27 +54,35 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          name="username"
-          placeholder="Username"
-          {...register("username", { required: true })}
-        />
-        {errors && errors.username && <p>Username is required</p>}
+    <div className="login-page-container">
+      <div className="login-box">
+        <div className="login-header">
+          <h1>Courtemanche Financial</h1>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="username">Username</label>
+          <input
+            name="username"
+            placeholder="Username"
+            {...register("username", { required: true })}
+          />
+          {errors && errors.username && <p>Username is required</p>}
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          {...register("password", { required: true })}
-        />
-        {errors && errors.password && <p>Password is required</p>}
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            {...register("password", { required: true })}
+          />
+          {errors && errors.password && <p>Password is required</p>}
 
-        <input type="submit" />
-        <Link to="/register">Don't have an account? Register here.</Link>
-      </form>
+          <input className="login-submit" type="submit" value="Login" />
+        </form>
+        <div className="register-link">
+          <Link to="/register">Don't have an account? Register here.</Link>
+        </div>
+      </div>
     </div>
   );
 };
