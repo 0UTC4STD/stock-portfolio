@@ -12,7 +12,6 @@ const SellPage = ({ stocks, onSell }) => {
 
   return (
     <div>
-      <h1>Sell Stocks</h1>
       <h2>Current Shares</h2>
       <table>
         <thead>
@@ -35,6 +34,9 @@ const SellPage = ({ stocks, onSell }) => {
         </tbody>
       </table>
       <div className="sell-form-container">
+        <div>
+          <h1>Sell Stocks</h1>
+        </div>
         <form onSubmit={handleSell}>
           <h3 htmlFor="ticker">Ticker:</h3>
           <input
