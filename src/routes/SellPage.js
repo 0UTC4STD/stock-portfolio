@@ -12,7 +12,7 @@ const SellPage = ({ stocks, onSell }) => {
   return (
     <div>
       <h1>Sell Stocks</h1>
-      <h2>Current Portfolio</h2>
+      <h2>Current Shares</h2>
       <table>
         <thead>
           <tr>

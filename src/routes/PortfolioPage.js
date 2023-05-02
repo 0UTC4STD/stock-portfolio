@@ -4,6 +4,7 @@ import '../styles/PortfolioPage.css';
 
 const PortfolioPage = ({ stocks }) => {
   const [stocksWithMarketValue, setStocksWithMarketValue] = useState([]);
+  const [totalValues, setTotalValues] = useState({ parValue: 0, marketValue: 0, gainLoss: 0 });
 
   useEffect(() => {
     fetchMarketValues();
@@ -11,6 +12,9 @@ const PortfolioPage = ({ stocks }) => {
 
   const fetchMarketValues = async () => {
     const updatedStocks = [];
+    let totalParValue = 0;
+    let totalMarketValue = 0;
+    let totalGainLoss = 0;
 
     for (const stock of stocks) {
       try {
@@ -25,6 +29,10 @@ const PortfolioPage = ({ stocks }) => {
         const marketValue = currentPrice * stock.quantity;
         const gainLoss = marketValue - stock.totalValue;
 
+        totalParValue += stock.totalValue;
+        totalMarketValue += marketValue;
+        totalGainLoss += gainLoss;
+
         updatedStocks.push({ ...stock, currentPrice, marketValue, gainLoss });
       } catch (error) {
         console.error('Error fetching stock data:', error);
@@ -32,6 +40,7 @@ const PortfolioPage = ({ stocks }) => {
     }
 
     setStocksWithMarketValue(updatedStocks);
+    setTotalValues({ parValue: totalParValue, marketValue: totalMarketValue, gainLoss: totalGainLoss });
   };
 
   return (
@@ -64,6 +73,17 @@ const PortfolioPage = ({ stocks }) => {
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="3"></td>
+            <td style={{ borderTop: '2px solid black' }}>${totalValues.parValue.toFixed(2)}</td>
+            <td></td>
+            <td style={{ borderTop: '2px solid black' }}>${totalValues.marketValue.toFixed(2)}</td>
+            <td style={{ borderTop: '2px solid black', color: totalValues.gainLoss >= 0 ? 'green' : 'red' }}>
+              {totalValues.gainLoss >= 0 ? '+' : '-'}${Math.abs(totalValues.gainLoss).toFixed(2)}
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
