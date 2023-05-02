@@ -9,11 +9,12 @@
     position: relative;
     padding: 30px;
     border-radius: 15px;
-    border: 3px solid #000;
-    border-color: #000 transparent #000 #000;
-    box-shadow: inset 0 0 0 3px lightblue;
+    border: 3px solid lightblue;
     background-color: #fff;
     width: 400px;
+    height: 450px; /* Add this line to make the box taller */
+    display: flex;
+    flex-direction: column; /* Add this line to align the elements vertically */
   }
   
   .register-header {
@@ -38,6 +39,9 @@
     display: block;
     width: 100%;
     margin-bottom: 20px;
+    border: none; /* Remove the border */
+    border-bottom: 2px solid #000; /* Add bottom border only */
+    outline: none; /* Remove outline */
   }
   
   .register-submit {
@@ -50,7 +54,7 @@
   }
   
   .login-link {
-    margin-top: 20px;
+    margin-top: auto;
     text-align: center;
   }
   
