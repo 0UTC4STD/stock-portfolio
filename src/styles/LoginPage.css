@@ -70,3 +70,8 @@
     margin-top: -5px;
     margin-bottom: 10px;
   }
+
+  .invalid-credentials {
+    color: red;
+    margin-top: 10px;
+  }
