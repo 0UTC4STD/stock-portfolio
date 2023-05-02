@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ErrorMessage from '../backend/ErrorMessage';
+import '../styles/ResearchPage.css';
 
 const ResearchPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -43,18 +44,18 @@ const ResearchPage = () => {
     <div>
       <h1>Research</h1>
       <p>For Best Results it is recommended to use the stock ticker!</p>
-      <form onSubmit={handleSearch}>
+      <form className="search-form" onSubmit={handleSearch}>
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Enter stock ticker or company name"
         />
-        <button type="submit">Search</button>
+        <button className="search-button" type="submit">Search</button>
       </form>
       {error && <ErrorMessage message={error} />}
       {stockData && (
-        <div>
+        <div className="stock-info-container">
           <h2>Stock Information</h2>
           <p>Company Name: {stockData.name}</p>
           <p>Stock Ticker: {stockData.symbol}</p>
