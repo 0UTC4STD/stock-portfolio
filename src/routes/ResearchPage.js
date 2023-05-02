@@ -42,9 +42,11 @@ const ResearchPage = () => {
 
   return (
     <div>
-      <h1>Research</h1>
-      <p>For Best Results it is recommended to use the stock ticker!</p>
       <form className="search-form" onSubmit={handleSearch}>
+        <div>
+          <h1>Research</h1>
+          <p>For Best Results it is recommended to use the stock ticker!</p>
+        </div>
         <input
           type="text"
           value={searchTerm}
