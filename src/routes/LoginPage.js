@@ -9,6 +9,9 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // Add a new state variable for invalid credentials
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
+
   useEffect(() => {
     // Check if the user is already authenticated
     if (isAuthenticated) {
@@ -47,9 +50,11 @@ const LoginPage = () => {
       localStorage.setItem('token', response.data.token);
 
       // Reload the page after successful login
-      navigate('/');
+      window.location.reload();
     } catch (error) {
       console.error(error);
+      // Set invalidCredentials state to true when login fails
+      setInvalidCredentials(true);
     }
   };
 
@@ -60,7 +65,7 @@ const LoginPage = () => {
           <h1>Courtemanche Financial</h1>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2 htmlFor="username">Username</h2>
+          <label htmlFor="username">Username</label>
           <input
             name="username"
             placeholder="Username"
@@ -68,7 +73,7 @@ const LoginPage = () => {
           />
           {errors && errors.username && <p>Username is required</p>}
 
-          <h2 htmlFor="password">Password</h2>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -77,9 +82,10 @@ const LoginPage = () => {
           />
           {errors && errors.password && <p>Password is required</p>}
 
-          <Link to="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
-
           <input className="login-submit" type="submit" value="Login" />
+          
+          {/* Conditionally render the error message */}
+          {invalidCredentials && <p className="invalid-credentials">Invalid Username/Password</p>}
         </form>
         <div className="register-link">
           <Link to="/register">Don't have an account? Register here.</Link>
