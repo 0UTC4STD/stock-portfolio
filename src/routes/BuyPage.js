@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ErrorMessage from '../backend/ErrorMessage';
 import { useNavigate } from 'react-router-dom';
+import '../styles/BuyPage.css'
 
 const BuyPage = ({ onBuy }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -48,18 +49,18 @@ const BuyPage = ({ onBuy }) => {
   return (
     <div>
       <h1>Buy</h1>
-      <form onSubmit={handleSearch}>
+      <form className="search-form" onSubmit={handleSearch}>
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Enter stock ticker or company name"
         />
-        <button type="submit">Search</button>
+        <button className="search-button" type="submit">Search</button>
       </form>
       {error && <ErrorMessage message={error} />}
       {stockData && (
-        <div>
+        <div className="stock-info-container">
           <h2>Stock Information</h2>
           <p>Company Name: {stockData.name}</p>
           <p>Stock Ticker: {stockData.symbol}</p>
@@ -71,7 +72,7 @@ const BuyPage = ({ onBuy }) => {
             min="1"
             step="1"
           />
-          <button onClick={handleBuy}>Buy</button>
+          <button className="buy-button" onClick={handleBuy}>Buy</button>
         </div>
       )}
     </div>
