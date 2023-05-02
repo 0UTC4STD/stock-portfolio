@@ -11,13 +11,13 @@
     border-radius: 15px;
     border: 3px solid #000;
     border-color: #000 transparent #000 #000;
-    box-shadow: inset 0 0 0 3px #00f;
+    box-shadow: inset 0 0 0 3px #61dafb;
     background-color: #fff;
     width: 400px;
   }
   
   .register-header {
-    background-color: #00f;
+    background-color: #61dafb;
     padding: 15px;
     border-radius: 10px 10px 0 0;
     margin: -30px -30px 30px -30px;
@@ -41,7 +41,7 @@
   }
   
   .register-submit {
-    background-color: #00f;
+    background-color: #61dafb;
     color: #fff;
     border: none;
     border-radius: 5px;
