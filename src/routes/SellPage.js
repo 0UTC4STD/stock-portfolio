@@ -36,14 +36,14 @@ const SellPage = ({ stocks, onSell }) => {
       </table>
       <div className="sell-form-container">
         <form onSubmit={handleSell}>
-          <label htmlFor="ticker">Ticker:</label>
+          <h3 htmlFor="ticker">Ticker:</h3>
           <input
             type="text"
             id="ticker"
             value={ticker}
             onChange={(e) => setTicker(e.target.value)}
           />
-          <label htmlFor="quantity">Quantity:</label>
+          <h3 htmlFor="quantity">Quantity:</h3>
           <input
             type="number"
             id="quantity"

@@ -5,6 +5,9 @@
   padding: 20px;
   border-radius: 10px;
   border: 1px solid lightblue;
+  width: 50%; 
+  margin-left: auto; 
+  margin-right: auto; 
 }
 
 form {
