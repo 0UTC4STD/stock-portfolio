@@ -75,9 +75,11 @@ const PortfolioPage = ({ stocks }) => {
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan="3"></td>
+            <td style={{ borderTop: '2px solid black' }}>Total</td>
+            <td style={{ borderTop: '2px solid black' }}></td>
+            <td style={{ borderTop: '2px solid black' }}></td>
             <td style={{ borderTop: '2px solid black' }}>${totalValues.parValue.toFixed(2)}</td>
-            <td></td>
+            <td style={{ borderTop: '2px solid black' }}></td>
             <td style={{ borderTop: '2px solid black' }}>${totalValues.marketValue.toFixed(2)}</td>
             <td style={{ borderTop: '2px solid black', color: totalValues.gainLoss >= 0 ? 'green' : 'red' }}>
               {totalValues.gainLoss >= 0 ? '+' : '-'}${Math.abs(totalValues.gainLoss).toFixed(2)}
