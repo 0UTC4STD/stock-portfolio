@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import '../styles/SellPage.css';
+
 
 const SellPage = ({ stocks, onSell }) => {
   const [ticker, setTicker] = useState('');
@@ -33,24 +35,26 @@ const SellPage = ({ stocks, onSell }) => {
           ))}
         </tbody>
       </table>
-      <form onSubmit={handleSell}>
-        <label htmlFor="ticker">Ticker:</label>
-        <input
-          type="text"
-          id="ticker"
-          value={ticker}
-          onChange={(e) => setTicker(e.target.value)}
-        />
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          id="quantity"
-          value={quantity}
-          min="1"
-          onChange={(e) => setQuantity(Number(e.target.value))}
-        />
-        <button type="submit">Sell</button>
-      </form>
+      <div className="sell-form-container">
+        <form onSubmit={handleSell}>
+          <label htmlFor="ticker">Ticker:</label>
+          <input
+            type="text"
+            id="ticker"
+            value={ticker}
+            onChange={(e) => setTicker(e.target.value)}
+          />
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            value={quantity}
+            min="1"
+            onChange={(e) => setQuantity(Number(e.target.value))}
+          />
+          <button type="submit">Sell</button>
+        </form>
+      </div>
     </div>
   );
 };
