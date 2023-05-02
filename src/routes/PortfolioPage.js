@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/PortfolioPage.css';
 
 const PortfolioPage = ({ stocks }) => {
   const [stocksWithMarketValue, setStocksWithMarketValue] = useState([]);
