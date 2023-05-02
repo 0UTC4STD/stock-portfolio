@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/SellPage.css';
 
-
 const SellPage = ({ stocks, onSell }) => {
   const [ticker, setTicker] = useState('');
   const [quantity, setQuantity] = useState(1);
