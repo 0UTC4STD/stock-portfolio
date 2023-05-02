@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useStocks } from './backend/useStocks';
+import './App.css'
 import LoginPage from './routes/LoginPage';
 import RegisterPage from './routes/RegisterPage';
 import HomePage from './routes/HomePage';
