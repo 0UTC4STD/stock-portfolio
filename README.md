@@ -1,6 +1,6 @@
 https://courtemanche-financial.herokuapp.com/
 
-About
+
 Welcome to our Stock Portfolio Manager WebApp, designed and developed by Dylan Courtemanche in April 2023 as a Capstone Project for his Software Engineer Certification from the University of South Florida. Our WebApp is built in React and uses MongoDB and Heroku to offer a seamless and secure user experience.
 
 With our Stock Portfolio Manager WebApp, users can easily create an account and login with a JsonWebToken, which is authenticated using our MongoDB Atlas database. Once logged in, users have access to a wide range of features designed to help them manage their stock portfolios.
