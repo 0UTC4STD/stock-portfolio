@@ -12,7 +12,6 @@ const SellPage = ({ stocks, onSell }) => {
 
   return (
     <div>
-      <h1>Sell Stocks</h1>
       <h2>Current Shares</h2>
       <table>
         <thead>
@@ -34,25 +33,27 @@ const SellPage = ({ stocks, onSell }) => {
           ))}
         </tbody>
       </table>
-      <form className="sell-form" onSubmit={handleSell}>
-        <h2>Sell Stocks</h2>
-        <label htmlFor="ticker">Ticker:</label>
-        <input
-          type="text"
-          id="ticker"
-          value={ticker}
-          onChange={(e) => setTicker(e.target.value)}
-        />
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          id="quantity"
-          value={quantity}
-          min="1"
-          onChange={(e) => setQuantity(Number(e.target.value))}
-        />
-        <button className="sell-button" type="submit">Sell</button>
-      </form>
+      <div className="sell-form-container">
+        <form className="sell-form" onSubmit={handleSell}>
+          <h2>Sell Stocks</h2>
+          <label htmlFor="ticker">Ticker:</label>
+          <input
+            type="text"
+            id="ticker"
+            value={ticker}
+            onChange={(e) => setTicker(e.target.value)}
+          />
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            value={quantity}
+            min="1"
+            onChange={(e) => setQuantity(Number(e.target.value))}
+          />
+          <button className="sell-button" type="submit">Sell</button>
+        </form>
+      </div>
     </div>
   );
 };
