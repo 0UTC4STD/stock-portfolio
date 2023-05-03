@@ -24,6 +24,8 @@ table {
   
   tbody tr:last-child {
     border-bottom: none;
-    font-weight: bold;
   }
   
+  .total-row {
+    font-weight: bold;
+  }
