@@ -74,7 +74,7 @@ const PortfolioPage = ({ stocks }) => {
           ))}
         </tbody>
         <tfoot>
-          <tr>
+          <tr className="total-row">
             <td style={{ borderTop: '2px solid black' }}>Total</td>
             <td style={{ borderTop: '2px solid black' }}></td>
             <td style={{ borderTop: '2px solid black' }}></td>
