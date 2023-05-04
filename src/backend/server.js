@@ -79,6 +79,8 @@ app.get('/api/check-auth', (req, res) => {
 });
 
 app.put('/api/update-profile', [
+  body('currentUsername').notEmpty().withMessage('Current username is required.'),
+  body('currentPassword').notEmpty().withMessage('Current password is required.'),
   body('newUsername').notEmpty().withMessage('New username is required.'),
   body('newPassword').notEmpty().withMessage('New password is required.'),
 ], async (req, res) => {
@@ -87,19 +89,24 @@ app.put('/api/update-profile', [
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { userId, newUsername, newPassword } = req.body;
+  const { userId, currentUsername, currentPassword, newUsername, newPassword } = req.body;
 
   try {
     const user = await User.findById(userId);
-
+  
     if (!user) {
       return res.status(400).json({ message: 'User not found.' });
     }
-
+  
+    // Check if the current username and password match the user's records
+    if (user.username !== currentUsername || !(await user.comparePassword(currentPassword))) {
+      return res.status(400).json({ message: 'Current username or password is incorrect.' });
+    }
+  
     user.username = newUsername;
     user.password = await user.hashPassword(newPassword); // Use the hashPassword method
     await user.save();
-
+  
     res.status(200).json({ message: 'Profile updated successfully.' });
   } catch (error) {
     console.error(error);
