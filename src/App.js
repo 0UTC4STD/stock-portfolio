@@ -32,6 +32,12 @@ function App() {
     if (token) {
       setIsAuthenticated(true);
     }
+
+    window.addEventListener('beforeunload', handleLogout);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleLogout);
+    };
   }, []);
 
   const handleLogout = () => {
