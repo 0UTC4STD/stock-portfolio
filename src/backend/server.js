@@ -15,6 +15,7 @@ app.use(express.json());
 mongoose.connect(config.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 app.post('/api/register', async (req, res) => {
@@ -79,9 +80,7 @@ app.get('/api/check-auth', (req, res) => {
 });
 
 app.put('/api/update-profile', [
-  body('currentUsername').notEmpty().withMessage('Current username is required.'),
   body('newUsername').notEmpty().withMessage('New username is required.'),
-  body('currentPassword').notEmpty().withMessage('Current password is required.'),
   body('newPassword').notEmpty().withMessage('New password is required.'),
 ], async (req, res) => {
   const errors = validationResult(req);
@@ -89,45 +88,24 @@ app.put('/api/update-profile', [
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { currentUsername, newUsername, currentPassword, newPassword } = req.body;
-  const token = req.headers.authorization?.split(' ')[1];
+  const { userId, newUsername, newPassword } = req.body;
 
-  if (!token) {
-    return res.status(401).json({ message: 'No token provided.' });
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(400).json({ message: 'User not found.' });
+    }
+
+    user.username = newUsername;
+    user.password = await user.hashPassword(newPassword); // Use the hashPassword method
+    await user.save();
+
+    res.status(200).json({ message: 'Profile updated successfully.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error.' });
   }
-
-  jwt.verify(token, config.JWT_SECRET, async (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ message: 'Token is invalid or expired.' });
-    }
-
-    try {
-      const user = await User.findById(decoded.id);
-
-      if (!user) {
-        return res.status(404).json({ message: 'User not found.' });
-      }
-
-      if (user.username !== currentUsername) {
-        return res.status(400).json({ message: 'Current username is incorrect.' });
-      }
-
-      const isPasswordValid = await user.isPasswordValid(currentPassword);
-
-      if (!isPasswordValid) {
-        return res.status(400).json({ message: 'Current password is incorrect.' });
-      }
-
-      user.username = newUsername;
-      user.password = await user.hashPassword(newPassword); 
-      await user.save();
-
-      res.status(200).json({ message: 'Profile updated successfully.' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error.' });
-    }
-  });
 });
 
 if (process.env.NODE_ENV === 'production') {
