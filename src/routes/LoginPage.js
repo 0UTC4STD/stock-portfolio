@@ -7,7 +7,7 @@ import '../styles/LoginPage.css';
 const LoginPage = ({ setIsAuthenticated }) => {
   const { register, handleSubmit, errors } = useForm();
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
 
   // Add a new state variable for invalid credentials
   const [invalidCredentials, setInvalidCredentials] = useState(false);
