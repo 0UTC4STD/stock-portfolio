@@ -40,11 +40,16 @@ function App() {
     };
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
+  const handleLogout = (e) => {
+    if (e && e.type === 'beforeunload') {
+      localStorage.removeItem('token');
+      setIsAuthenticated(false);
+    } else {
+      localStorage.removeItem('token');
+      setIsAuthenticated(false);
+    }
   };
-
+  
   return (
     <Router>
       {isAuthenticated ? (
