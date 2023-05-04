@@ -65,7 +65,7 @@ const PortfolioPage = ({ stocks }) => {
               <td>{stock.name}</td>
               <td>{stock.symbol}</td>
               <td>{stock.quantity}</td>
-              <td>${stock.totalValue.toFixed(2)}</td>
+              <td>${stock.totalValue ? stock.totalValue.toFixed(2) : '0.00'}</td>
               <td>${stock.currentPrice.toFixed(2)}</td>
               <td>${stock.marketValue.toFixed(2)}</td>
               <td style={{ color: stock.gainLoss >= 0 ? 'green' : 'red' }}>
