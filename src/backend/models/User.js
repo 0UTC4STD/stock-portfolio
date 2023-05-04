@@ -26,4 +26,10 @@ UserSchema.methods.isPasswordValid = function (password) {
   return bcrypt.compare(password, this.password);
 };
 
+userSchema.methods.hashPassword = async function (password) {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  return hashedPassword;
+};
+
 module.exports = mongoose.model('User', UserSchema);

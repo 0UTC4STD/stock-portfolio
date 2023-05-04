@@ -77,6 +77,7 @@ app.get('/api/check-auth', (req, res) => {
     res.status(200).json({ message: 'Token is valid.', userId: decoded.id });
   });
 });
+
 app.put('/api/update-profile', [
   body('currentUsername').notEmpty().withMessage('Current username is required.'),
   body('newUsername').notEmpty().withMessage('New username is required.'),
@@ -118,7 +119,7 @@ app.put('/api/update-profile', [
       }
 
       user.username = newUsername;
-      user.password = await bcrypt.hash(newPassword, 10);
+      user.password = await user.hashPassword(newPassword); 
       await user.save();
 
       res.status(200).json({ message: 'Profile updated successfully.' });
