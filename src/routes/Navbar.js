@@ -12,6 +12,7 @@ const Navbar = ({ handleLogout }) => {
         <li><Link to="/buy">Buy</Link></li>
         <li><Link to="/sell">Sell</Link></li>
         <li><Link to="/about">About</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
         <li><Logout handleLogout={handleLogout} /></li>
       </ul>
     </nav>
