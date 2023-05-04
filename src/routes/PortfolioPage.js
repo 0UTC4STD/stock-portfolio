@@ -15,7 +15,7 @@ const PortfolioPage = ({ stocks }) => {
     let totalParValue = 0;
     let totalMarketValue = 0;
     let totalGainLoss = 0;
-
+  
     for (const stock of stocks) {
       try {
         const response = await axios.get(
@@ -28,18 +28,23 @@ const PortfolioPage = ({ stocks }) => {
         const currentPrice = parseFloat(response.data['Global Quote']['05. price']);
         const marketValue = currentPrice * stock.quantity;
         const gainLoss = marketValue - stock.totalValue;
-
+  
         totalParValue += stock.totalValue;
         totalMarketValue += marketValue;
         totalGainLoss += gainLoss;
-
+  
         updatedStocks.push({ ...stock, currentPrice, marketValue, gainLoss });
       } catch (error) {
         console.error('Error fetching stock data:', error);
       }
     }
-
-    setStocksWithMarketValue(updatedStocks);
+  
+    const updatedStocksWithPercentage = updatedStocks.map((stock) => {
+      const percentage = (stock.marketValue / totalMarketValue) * 100;
+      return { ...stock, percentage };
+    });
+  
+    setStocksWithMarketValue(updatedStocksWithPercentage);
     setTotalValues({ parValue: totalParValue, marketValue: totalMarketValue, gainLoss: totalGainLoss });
   };
 
