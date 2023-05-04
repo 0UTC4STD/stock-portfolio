@@ -12,7 +12,7 @@ import PortfolioPage from './routes/PortfolioPage';
 import Navbar from './routes/Navbar';
 import Logout from './routes/Logout';
 import ForgotPassword from './routes/ForgotPassword';
-import ProfilePage from './routes/ProfilePage';
+// import ProfilePage from './routes/ProfilePage';
 import React, { useState, useEffect } from "react";
 
 const MainLayout = ({ children, handleLogout }) => {
@@ -63,7 +63,7 @@ function App() {
             <Route path="/sell" element={<SellPage stocks={stocks} onSell={handleSell} />} />
             <Route path="/portfolio" element={<PortfolioPage stocks={stocks} key={stocks.length} />} />
             <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            {/* <Route path="/profile" element={<ProfilePage />} /> */}
           </Routes>
         </MainLayout>
       ) : (
