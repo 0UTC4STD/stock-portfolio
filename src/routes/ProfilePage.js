@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-
+import jwt_decode from 'jwt-decode';
 
 const ProfilePage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -11,10 +11,15 @@ const ProfilePage = () => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
+        const decodedToken = jwt_decode(token);
+        const userId = decodedToken.userId;
+  
+        data.userId = userId;
+  
         const response = await axios.put('/api/update-profile', data, {
           headers: { 'Authorization': `Bearer ${token}` },
         });
-
+  
         if (response.status === 200) {
           setUpdateSuccess(true);
         }
