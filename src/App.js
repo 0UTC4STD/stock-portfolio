@@ -14,7 +14,7 @@ import {
   Logout,
   ForgotPassword,
   // ProfilePage,
-} from './routes.js';
+} from './routes';
 import React, { useState, useEffect } from "react";
 
 const MainLayout = ({ children, handleLogout }) => {
