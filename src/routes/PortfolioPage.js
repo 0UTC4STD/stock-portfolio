@@ -7,21 +7,16 @@ const PortfolioPage = ({ stocks }) => {
   const [totalValues, setTotalValues] = useState({ parValue: 0, marketValue: 0, gainLoss: 0 });
 
   useEffect(() => {
-    const storedStocks = JSON.parse(localStorage.getItem('stocks'));
-    if (storedStocks) {
-      fetchMarketValues(storedStocks);
-    } else {
-      fetchMarketValues(stocks);
-    }
+    fetchMarketValues();
   }, [stocks]);
 
-  const fetchMarketValues = async (stocksToFetch) => {
+  const fetchMarketValues = async () => {
     const updatedStocks = [];
     let totalParValue = 0;
     let totalMarketValue = 0;
     let totalGainLoss = 0;
 
-    for (const stock of stocksToFetch) {
+    for (const stock of stocks) {
       try {
         const response = await axios.get(
           `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock.symbol}&apikey=701XT7HF8HCGIAJ5`
@@ -46,11 +41,7 @@ const PortfolioPage = ({ stocks }) => {
 
     setStocksWithMarketValue(updatedStocks);
     setTotalValues({ parValue: totalParValue, marketValue: totalMarketValue, gainLoss: totalGainLoss });
-
-  
-    localStorage.setItem('stocks', JSON.stringify(updatedStocks));
   };
-
 
   return (
     <div>
