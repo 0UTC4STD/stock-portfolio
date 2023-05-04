@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/LoginPage.css';
 
-const LoginPage = () => {
+const LoginPage = ({ setIsAuthenticated }) => {
   const { register, handleSubmit, errors } = useForm();
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);

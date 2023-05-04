@@ -49,7 +49,7 @@ function App() {
       setIsAuthenticated(false);
     }
   };
-  
+
   return (
     <Router>
       {isAuthenticated ? (
