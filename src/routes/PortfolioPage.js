@@ -39,9 +39,15 @@ const PortfolioPage = ({ stocks }) => {
       }
     }
 
-    setStocksWithMarketValue(updatedStocks);
+    const updatedStocksWithPercentages = updatedStocks.map((stock) => ({
+      ...stock,
+      percentage: (stock.marketValue / totalMarketValue) * 100,
+    }));
+
+    setStocksWithMarketValue(updatedStocksWithPercentages);
     setTotalValues({ parValue: totalParValue, marketValue: totalMarketValue, gainLoss: totalGainLoss });
   };
+
 
   return (
     <div>
@@ -56,6 +62,7 @@ const PortfolioPage = ({ stocks }) => {
             <th>Current Price</th>
             <th>Market Value</th>
             <th>Gain/Loss</th>
+            <th>Percentage</th>
           </tr>
         </thead>
         <tbody>
@@ -70,6 +77,7 @@ const PortfolioPage = ({ stocks }) => {
               <td style={{ color: stock.gainLoss >= 0 ? 'green' : 'red' }}>
                 {stock.gainLoss >= 0 ? '+' : '-'}${Math.abs(stock.gainLoss).toFixed(2)}
               </td>
+              <td>{stock.percentage.toFixed(2)}%</td>
             </tr>
           ))}
         </tbody>
@@ -84,6 +92,7 @@ const PortfolioPage = ({ stocks }) => {
             <td style={{ borderTop: '2px solid black', color: totalValues.gainLoss >= 0 ? 'green' : 'red' }}>
               {totalValues.gainLoss >= 0 ? '+' : '-'}${Math.abs(totalValues.gainLoss).toFixed(2)}
             </td>
+            <td style={{ borderTop: '2px solid black' }}>100%</td>
           </tr>
         </tfoot>
       </table>
