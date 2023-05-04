@@ -7,39 +7,9 @@ import '../styles/LoginPage.css';
 const LoginPage = ({ setIsAuthenticated }) => {
   const { register, handleSubmit, errors } = useForm();
   const navigate = useNavigate();
-  
 
   // Add a new state variable for invalid credentials
   const [invalidCredentials, setInvalidCredentials] = useState(false);
-
-  useEffect(() => {
-    // Check if the user is already authenticated
-    if (isAuthenticated) {
-      navigate('/');
-    }
-  }, [navigate, isAuthenticated]);
-
-  const isAuthenticatedUser = async () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const response = await axios.get('/api/check-auth', {
-          headers: { 'Authorization': `Bearer ${token}` },
-        });
-
-        if (response.status === 200) {
-          setIsAuthenticated(true);
-        }
-      } catch (error) {
-        console.error(error);
-        setIsAuthenticated(false);
-      }
-    }
-  };
-
-  useEffect(() => {
-    isAuthenticatedUser();
-  }, []);
 
   const onSubmit = async (data) => {
     try {
@@ -49,8 +19,11 @@ const LoginPage = ({ setIsAuthenticated }) => {
       // Save the JWT token to the local storage
       localStorage.setItem('token', response.data.token);
 
-      // Reload the page after successful login
-      window.location.reload();
+      // Set the isAuthenticated state in the App component
+      setIsAuthenticated(true);
+
+      // Navigate to the home page after successful login
+      navigate('/');
     } catch (error) {
       console.error(error);
       // Set invalidCredentials state to true when login fails
