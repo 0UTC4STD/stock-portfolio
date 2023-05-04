@@ -47,7 +47,7 @@ const PortfolioPage = ({ stocks }) => {
     setStocksWithMarketValue(updatedStocks);
     setTotalValues({ parValue: totalParValue, marketValue: totalMarketValue, gainLoss: totalGainLoss });
 
-    // Update stocks in localStorage
+  
     localStorage.setItem('stocks', JSON.stringify(updatedStocks));
   };
 
