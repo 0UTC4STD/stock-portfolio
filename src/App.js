@@ -1,18 +1,20 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useStocks } from './backend/useStocks';
 import './styles/App.css'
-import LoginPage from './routes/LoginPage';
-import RegisterPage from './routes/RegisterPage';
-import HomePage from './routes/HomePage';
-import AboutPage from './routes/AboutPage';
-import BuyPage from './routes/BuyPage';
-import SellPage from './routes/SellPage';
-import ResearchPage from './routes/ResearchPage';
-import PortfolioPage from './routes/PortfolioPage';
-import Navbar from './routes/Navbar';
-import Logout from './routes/Logout';
-import ForgotPassword from './routes/ForgotPassword';
-// import ProfilePage from './routes/ProfilePage';
+import {
+  LoginPage,
+  RegisterPage,
+  HomePage,
+  AboutPage,
+  BuyPage,
+  SellPage,
+  ResearchPage,
+  PortfolioPage,
+  Navbar,
+  Logout,
+  ForgotPassword,
+  // ProfilePage,
+} from './routes';
 import React, { useState, useEffect } from "react";
 
 const MainLayout = ({ children, handleLogout }) => {
