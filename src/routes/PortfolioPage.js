@@ -71,7 +71,7 @@ const PortfolioPage = ({ stocks }) => {
               <td style={{ color: stock.gainLoss >= 0 ? 'green' : 'red' }}>
                 {stock.gainLoss >= 0 ? '+' : '-'}${Math.abs(stock.gainLoss).toFixed(2)}
               </td>
-              <td>{stock.percentage.toFixed(2)}%</td>
+              <td>{stock.percentage ? stock.percentage.toFixed(2) : '0.00'}%</td>
             </tr>
           ))}
         </tbody>
