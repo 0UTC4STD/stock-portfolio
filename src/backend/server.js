@@ -15,7 +15,6 @@ app.use(express.json());
 mongoose.connect(config.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
 });
 
 app.post('/api/register', async (req, res) => {
