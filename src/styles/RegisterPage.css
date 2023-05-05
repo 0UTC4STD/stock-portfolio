@@ -61,26 +61,3 @@
   .login-link a {
     color: #999;
   }
-
-  .profit-prediction-container {
-    margin-top: 2rem;
-    text-align: center;
-  }
-  
-  .calculate-button {
-    margin-top: 1rem;
-  }
-  
-  .profit,
-  .loss {
-    margin-top: 1rem;
-    font-weight: bold;
-  }
-  
-  .profit {
-    color: green;
-  }
-  
-  .loss {
-    color: red;
-  }
