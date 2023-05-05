@@ -1,17 +1,14 @@
 .homepage-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 0 auto;
   }
   
   .outlined-rectangle {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background-color: white;
     border: 2px solid lightblue;
     border-radius: 15px;
@@ -19,3 +16,4 @@
     max-width: 600px;
     text-align: center;
   }
+  
