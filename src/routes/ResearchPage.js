@@ -53,7 +53,7 @@ const ResearchPage = () => {
   };
 
   return (
-  <div>
+  <div className="container">
     <form className="search-form" onSubmit={handleSearch}>
       <div>
         <h1>Research</h1>
