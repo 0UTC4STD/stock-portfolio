@@ -7,15 +7,18 @@ const ResearchPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [stockData, setStockData] = useState(null);
   const [error, setError] = useState(null);
+  const [qty, setQty] = useState('');
+  const [sellPrice, setSellPrice] = useState('');
+  const [profitLoss, setProfitLoss] = useState(null);
 
   const fetchStockData = async (ticker) => {
     try {
       const quoteResponse = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=701XT7HF8HCGIAJ5`);
       const searchResponse = await axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${ticker}&apikey=701XT7HF8HCGIAJ5`);
-
+  
       const quoteData = quoteResponse.data['Global Quote'];
       const searchData = searchResponse.data.bestMatches && searchResponse.data.bestMatches[0];
-
+  
       if (quoteData && searchData) {
         setError(null);
         setStockData({
@@ -33,24 +36,21 @@ const ResearchPage = () => {
       console.error('Error fetching stock data:', error);
       setError('An error occurred while fetching stock data.');
     }
-    const [qty, setQty] = useState('');
-    const [sellPrice, setSellPrice] = useState('');
-    const [profitLoss, setProfitLoss] = useState(null);
-  
-    const calculateProfitLoss = (e) => {
-      e.preventDefault();
-      if (qty && sellPrice && stockData) {
-        const currentPrice = parseFloat(stockData.price);
-        const result = (parseFloat(sellPrice) * parseFloat(qty)) - (currentPrice * parseFloat(qty));
-        setProfitLoss(result);
-      }
   };
-
+  
+  const calculateProfitLoss = (e) => {
+    e.preventDefault();
+    if (qty && sellPrice && stockData) {
+      const currentPrice = parseFloat(stockData.price);
+      const result = (parseFloat(sellPrice) * parseFloat(qty)) - (currentPrice * parseFloat(qty));
+      setProfitLoss(result);
+    }
+  };
+  
   const handleSearch = (e) => {
     e.preventDefault();
     fetchStockData(searchTerm);
   };
-
   return (
     <div>
       <form className="search-form" onSubmit={handleSearch}>
@@ -112,6 +112,6 @@ const ResearchPage = () => {
       )}
     </div>
   );
-  
+};
 
 export default ResearchPage;
