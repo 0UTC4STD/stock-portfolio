@@ -1,45 +1,45 @@
 .search-form {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid lightblue;
-    width: 25%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .search-button {
-    background-color: lightblue;
-    color: white;
-    padding: 6px 12px;
-    margin-left: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .stock-info-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid lightblue;
-    width: 25%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid lightblue;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.search-button {
+  background-color: lightblue;
+  color: white;
+  padding: 6px 12px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
 
 .boxes-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1200px;
+  gap: 30px;
+}
+
+.stock-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid lightblue;
+  width: 45%;
 }
 
 .profit-prediction-container {
@@ -49,22 +49,23 @@
   padding: 2rem;
   max-width: 600px;
   text-align: center;
+  width: 45%;
 }
-  
-  .calculate-button {
-    margin-top: 1rem;
-  }
-  
-  .profit,
-  .loss {
-    margin-top: 1rem;
-    font-weight: bold;
-  }
-  
-  .profit {
-    color: green;
-  }
-  
-  .loss {
-    color: red;
-  }
+
+.calculate-button {
+  margin-top: 1rem;
+}
+
+.profit,
+.loss {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.profit {
+  color: green;
+}
+
+.loss {
+  color: red;
+}
