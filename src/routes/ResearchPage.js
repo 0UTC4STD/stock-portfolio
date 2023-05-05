@@ -51,6 +51,7 @@ const ResearchPage = () => {
     e.preventDefault();
     fetchStockData(searchTerm);
   };
+  
   return (
     <div>
       <form className="search-form" onSubmit={handleSearch}>
@@ -67,8 +68,8 @@ const ResearchPage = () => {
         <button className="search-button" type="submit">Search</button>
       </form>
       {error && <ErrorMessage message={error} />}
-      {stockData && (
-        <>
+      <div className="boxes-container">
+        {stockData && (
           <div className="stock-info-container">
             <h2>Stock Information</h2>
             <p>Company Name: {stockData.name}</p>
@@ -77,39 +78,35 @@ const ResearchPage = () => {
             <p>Daily Highest Price: {stockData.high}</p>
             <p>Daily Lowest Price: {stockData.low}</p>
           </div>
-          <div className="profit-prediction-container">
-            <h2>Profit Prediction</h2>
-            <form onSubmit={calculateProfitLoss}>
-              <label htmlFor="qty">Qty of Shares:</label>
-              <input
-                type="number"
-                id="qty"
-                value={qty}
-                onChange={(e) => setQty(e.target.value)}
-                placeholder="Enter quantity"
-                min="1"
-                step="1"
-              />
-              <label htmlFor="sell-price">Sell Price:</label>
-              <input
-                type="number"
-                id="sell-price"
-                value={sellPrice}
-                onChange={(e) => setSellPrice(e.target.value)}
-                placeholder="Enter sell price"
-                min="0"
-                step="0.01"
-              />
-              <button className="calculate-button" type="submit">Calculate</button>
-            </form>
-            {profitLoss !== null && (
-              <div className={profitLoss >= 0 ? 'profit' : 'loss'}>
-                {profitLoss >= 0 ? 'Profit' : 'Loss'}: {profitLoss.toFixed(2)}
-              </div>
-            )}
-          </div>
-        </>
-      )}
+        )}
+        <div className="profit-prediction-container">
+          <h2>Profit Prediction</h2>
+          <form onSubmit={calculateProfitLoss}>
+            <label htmlFor="qty">Quantity:</label>
+            <input
+              type="number"
+              id="qty"
+              value={qty}
+              onChange={(e) => setQty(e.target.value)}
+              min="0"
+            />
+            <label htmlFor="sellPrice">Sell Price:</label>
+            <input
+              type="number"
+              id="sellPrice"
+              value={sellPrice}
+              onChange={(e) => setSellPrice(e.target.value)}
+              min="0"
+            />
+            <button type="submit">Calculate</button>
+          </form>
+          {profitLoss !== null && (
+            <div className={`profit-loss ${profitLoss >= 0 ? 'green' : 'red'}`}>
+              {profitLoss >= 0 ? 'Profit' : 'Loss'}: ${Math.abs(profitLoss).toFixed(2)}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

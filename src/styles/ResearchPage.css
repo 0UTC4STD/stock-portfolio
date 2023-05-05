@@ -33,11 +33,23 @@
     margin-left: auto;
     margin-right: auto;
   }
-  
-  .profit-prediction-container {
-    margin-top: 2rem;
-    text-align: center;
-  }
+
+
+.boxes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.profit-prediction-container {
+  background-color: white;
+  border: 2px solid lightblue;
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 600px;
+  text-align: center;
+}
   
   .calculate-button {
     margin-top: 1rem;
