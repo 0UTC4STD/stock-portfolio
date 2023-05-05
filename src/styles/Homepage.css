@@ -7,7 +7,7 @@
     margin: 0 auto;
   }
   
-  .rounded-edge-box {
+  .outlined-rectangle {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,8 +18,4 @@
     padding: 2rem;
     max-width: 600px;
     text-align: center;
-  }
-  
-  .rounded-edge-box h1 {
-    margin-top: 0.0;
   }
