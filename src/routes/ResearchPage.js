@@ -33,6 +33,17 @@ const ResearchPage = () => {
       console.error('Error fetching stock data:', error);
       setError('An error occurred while fetching stock data.');
     }
+    const [qty, setQty] = useState('');
+    const [sellPrice, setSellPrice] = useState('');
+    const [profitLoss, setProfitLoss] = useState(null);
+  
+    const calculateProfitLoss = (e) => {
+      e.preventDefault();
+      if (qty && sellPrice && stockData) {
+        const currentPrice = parseFloat(stockData.price);
+        const result = (parseFloat(sellPrice) * parseFloat(qty)) - (currentPrice * parseFloat(qty));
+        setProfitLoss(result);
+      }
   };
 
   const handleSearch = (e) => {
@@ -57,17 +68,50 @@ const ResearchPage = () => {
       </form>
       {error && <ErrorMessage message={error} />}
       {stockData && (
-        <div className="stock-info-container">
-          <h2>Stock Information</h2>
-          <p>Company Name: {stockData.name}</p>
-          <p>Stock Ticker: {stockData.symbol}</p>
-          <p>Current Price: {stockData.price}</p>
-          <p>Daily Highest Price: {stockData.high}</p>
-          <p>Daily Lowest Price: {stockData.low}</p>
-        </div>
+        <>
+          <div className="stock-info-container">
+            <h2>Stock Information</h2>
+            <p>Company Name: {stockData.name}</p>
+            <p>Stock Ticker: {stockData.symbol}</p>
+            <p>Current Price: {stockData.price}</p>
+            <p>Daily Highest Price: {stockData.high}</p>
+            <p>Daily Lowest Price: {stockData.low}</p>
+          </div>
+          <div className="profit-prediction-container">
+            <h2>Profit Prediction</h2>
+            <form onSubmit={calculateProfitLoss}>
+              <label htmlFor="qty">Qty of Shares:</label>
+              <input
+                type="number"
+                id="qty"
+                value={qty}
+                onChange={(e) => setQty(e.target.value)}
+                placeholder="Enter quantity"
+                min="1"
+                step="1"
+              />
+              <label htmlFor="sell-price">Sell Price:</label>
+              <input
+                type="number"
+                id="sell-price"
+                value={sellPrice}
+                onChange={(e) => setSellPrice(e.target.value)}
+                placeholder="Enter sell price"
+                min="0"
+                step="0.01"
+              />
+              <button className="calculate-button" type="submit">Calculate</button>
+            </form>
+            {profitLoss !== null && (
+              <div className={profitLoss >= 0 ? 'profit' : 'loss'}>
+                {profitLoss >= 0 ? 'Profit' : 'Loss'}: {profitLoss.toFixed(2)}
+              </div>
+            )}
+          </div>
+        </>
       )}
     </div>
   );
-};
+  
 
 export default ResearchPage;
