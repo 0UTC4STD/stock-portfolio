@@ -51,64 +51,73 @@ const ResearchPage = () => {
     e.preventDefault();
     fetchStockData(searchTerm);
   };
-  
+
   return (
-    <div>
-      <form className="search-form" onSubmit={handleSearch}>
-        <div>
-          <h1>Research</h1>
-          <p>For Best Results it is recommended to use the stock ticker!</p>
+  <div>
+    <form className="search-form" onSubmit={handleSearch}>
+      <div>
+        <h1>Research</h1>
+        <p>For Best Results it is recommended to use the stock ticker!</p>
+      </div>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Enter stock ticker or company name"
+      />
+      <button className="search-button" type="submit">Search</button>
+    </form>
+    {error && <ErrorMessage message={error} />}
+    <div className="boxes-container">
+      {stockData && (
+        <div className="stock-info-container">
+          <h2>Stock Information</h2>
+          <p>Company Name: {stockData.name}</p>
+          <p>Stock Ticker: {stockData.symbol}</p>
+          <p>Current Price: {stockData.price}</p>
+          <p>Daily Highest Price: {stockData.high}</p>
+          <p>Daily Lowest Price: {stockData.low}</p>
         </div>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Enter stock ticker or company name"
-        />
-        <button className="search-button" type="submit">Search</button>
-      </form>
-      {error && <ErrorMessage message={error} />}
-      <div className="boxes-container">
-        {stockData && (
-          <div className="stock-info-container">
-            <h2>Stock Information</h2>
-            <p>Company Name: {stockData.name}</p>
-            <p>Stock Ticker: {stockData.symbol}</p>
-            <p>Current Price: {stockData.price}</p>
-            <p>Daily Highest Price: {stockData.high}</p>
-            <p>Daily Lowest Price: {stockData.low}</p>
-          </div>
-        )}
+      )}
+      {stockData && (
         <div className="profit-prediction-container">
           <h2>Profit Prediction</h2>
           <form onSubmit={calculateProfitLoss}>
-            <label htmlFor="qty">Quantity:</label>
+            <label htmlFor="qty">Qty of shares:</label>
             <input
               type="number"
               id="qty"
               value={qty}
               onChange={(e) => setQty(e.target.value)}
-              min="0"
+              min="1"
             />
-            <label htmlFor="sellPrice">Sell Price:</label>
+            <label htmlFor="sell-price">Sell Price:</label>
             <input
               type="number"
-              id="sellPrice"
+              id="sell-price"
               value={sellPrice}
               onChange={(e) => setSellPrice(e.target.value)}
               min="0"
+              step="0.01"
             />
-            <button type="submit">Calculate</button>
+            <button className="calculate-button" type="submit">
+              Calculate
+            </button>
           </form>
           {profitLoss !== null && (
-            <div className={`profit-loss ${profitLoss >= 0 ? 'green' : 'red'}`}>
-              {profitLoss >= 0 ? 'Profit' : 'Loss'}: ${Math.abs(profitLoss).toFixed(2)}
+            <div>
+              {profitLoss > 0 ? (
+                <p className="profit">Profit: ${profitLoss.toFixed(2)}</p>
+              ) : (
+                <p className="loss">Loss: ${Math.abs(profitLoss).toFixed(2)}</p>
+              )}
             </div>
           )}
         </div>
-      </div>
+      )}
     </div>
-  );
+  </div>
+);
 };
 
 export default ResearchPage;
