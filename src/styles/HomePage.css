@@ -3,6 +3,8 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    margin: 0 auto;
+    margin-bottom: 50px;
   }
   
   .outlined-rectangle {
