@@ -25,9 +25,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding-left: 30px;
+  gap: 20px;
 }
 
 .stock-info-container,
@@ -43,6 +41,18 @@
   max-width: 600px;
 }
 
+.stock-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid lightblue;
+  width: 25%;
+  margin-left: auto;
+  margin-right: 0;
+}
 .calculate-button {
   margin-top: 1rem;
   background-color: lightblue;
